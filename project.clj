@@ -33,7 +33,8 @@
   :main collision.core
 
   :plugins [[lein-cprop "1.0.1"]
-            [lein-immutant "2.1.0"]]
+            [lein-immutant "2.1.0"]
+            [lein-cloverage "1.0.9"]]
 
   :profiles
   {:uberjar {:omit-source true

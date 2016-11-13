@@ -1,0 +1,9 @@
+language: clojure
+lein: 2.7.1
+sudo: false
+install: lein deps
+script: lein cloverage -o cov --coveralls  --ns-exclude-regex collision.test.* --ns-exclude-regex user --ns-exclude-regex collision.config --ns-exclude-regex collision.env
+jdk:
+  - openjdk7
+after_script:
+  - bash -ex test/coveralls.sh

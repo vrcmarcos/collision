@@ -1,4 +1,6 @@
-# Collision-Clojure
+# Collision
+
+[![Build Status](https://travis-ci.org/vrcmarcos/collision.svg?branch=master)](https://travis-ci.org/vrcmarcos/collision) [![Coverage Status](https://coveralls.io/repos/github/vrcmarcos/collision/badge.svg?branch=master)](https://coveralls.io/github/vrcmarcos/collision?branch=master)
 
 A [Clojure](http://clojure.org/) project that solves the [fraud problem](https://github.com/vrcmarcos/collision/blob/master/PROBLEM.md).
 
