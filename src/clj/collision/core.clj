@@ -1,5 +1,7 @@
 (ns collision.core
   (:require [collision.handler :as handler]
+            [collision.controller.input :as input]
+            [collision.persistence.memory :as memory]
             [luminus.repl-server :as repl]
             [luminus.http-server :as http]
             [collision.config :refer [env]]
@@ -46,4 +48,6 @@
   (.addShutdownHook (Runtime/getRuntime) (Thread. stop-app)))
 
 (defn -main [& args]
+  (memory/put-networks!
+    (input/create-networks-from-file "test-data.txt"))
   (start-app args))
