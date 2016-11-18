@@ -26,3 +26,15 @@
     (vecutils/append
       (vecutils/merge network1 network2)
       (remove-network network2 (remove-network network1 networks))))
+
+(defn nodes-belong-to-same-network [node1 node2 networks]
+  (def found false)
+  (def networksCounter 0)
+  (def networksQuantity (count networks))
+  (def nodesVec [node1 node2])
+  (while (and (not found) (< networksCounter networksQuantity))
+    (do
+      (def network (get networks networksCounter))
+      (def found (every? (set network) nodesVec))
+      (def networksCounter (inc networksCounter))))
+  found)

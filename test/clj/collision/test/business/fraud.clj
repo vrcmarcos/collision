@@ -18,3 +18,13 @@
                  [1 4])
                [5 6])
              [6 7])))))
+
+(deftest test-nodes-belong-to-same-network
+  (testing "should return true when node 1 and 2 and networks [[1 2] [3 4]] is given"
+    (is (= true (nodes-belong-to-same-network 1 2 [[1 2] [3 4]]))))
+  (testing "should return false when node 1 do not belong to the same network that node 2 belongs"
+    (is (= false (nodes-belong-to-same-network 1 2 [[1 3] [4 6]]))))
+  (testing "should return true when node 1 and 2 and networks [[1 2] [3 4]] is given"
+    (is (= true (nodes-belong-to-same-network 3 4 [[1 2] [3 4]]))))
+  (testing "should return false when node 1 and 2 and empty networks is given"
+    (is (= false (nodes-belong-to-same-network 3 4 [])))))
