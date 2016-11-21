@@ -1,14 +1,24 @@
 (ns collision.routes.home
-  (:require [collision.layout :as layout]
+  (:require [collision.business.fraud :as fraud]
             [collision.persistence.memory :as memory]
-            [compojure.core :refer [defroutes GET]]
-            [ring.util.http-response :as response]
-            [clojure.java.io :as io]))
+            [compojure.core :refer [defroutes GET PUT]]
+            [ring.util.response :refer [response]]))
 
-(defn networks-page []
-  (layout/render
-    "networks.html" {:networks (memory/get-networks)}))
+
+(defn get-all []
+  (response (memory/get-networks)))
+
+(defn put [collision]
+  (def networks (memory/get-networks))
+  (def updatedNetworks (fraud/add-collision networks collision))
+  (memory/put-networks! updatedNetworks)
+  (response updatedNetworks))
+
+(defn same-network [node1 node2]
+  (println node1 node2)
+  (response {:result (fraud/nodes-belong-to-same-network node1 node2 (memory/get-networks))}))
 
 (defroutes home-routes
-  (GET "/" [] (networks-page)))
-
+  (GET "/" [] (get-all))
+  (PUT "/" [collision] (put (let [input collision] (read-string (str "[" input "]")))))
+  (GET "/same_network" [node1 node2] (same-network node1 node2)))

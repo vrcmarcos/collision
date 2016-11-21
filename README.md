@@ -6,7 +6,25 @@ A [Clojure](http://clojure.org/) project that solves the [fraud problem](https:/
 
 ## WebServer
 
-The solutions is hosted on Heroku. You can see it live by clikcing [on this link](https://powerful-fjord-35264.herokuapp.com/).
+The solutions is hosted on Heroku. You can see it live by clicking [on this link](https://powerful-fjord-35264.herokuapp.com/).
+
+## Endpoints
+
+- `GET "/"`: Shows the current networks list
+
+	```bash
+    curl -X GET "https://powerful-fjord-35264.herokuapp.com/"
+    ```
+- `PUT "/" [collision "node1 node2"]`: Add a new collision to the network list
+
+	```bash
+    curl -X PUT -F "collision=100 20" "https://powerful-fjord-35264.herokuapp.com/"
+    ```
+- `GET "/same_network?node1={node_1}&node2={node_2}"`: Shows if the `{node_1}` belongs to the same networks that `{node_2}` belongs
+
+	```bash
+	curl -X GET "https://powerful-fjord-35264.herokuapp.com/same_network?node1=13&node2=89"
+    ```
 
 ## Algorithm Complexity
 
