@@ -17,7 +17,9 @@
                    [2 3])
                  [1 4])
                [5 6])
-             [6 7])))))
+             [6 7]))))
+  (testing "should not duplicate networks"
+    (is (= [[1 2] [3 4]] (add-collision [[1 2] [3 4]] [1 2])))))
 
 (deftest test-nodes-belong-to-same-network
   (testing "should return true when node 1 and 2 and networks [[1 2] [3 4]] is given"
