@@ -43,10 +43,8 @@ brew install leiningen
 
 ## Running
 
-A `Makefile` gives you the following tasks:
-
-- run_server: Run the web server (Default port: 3000)
-- run_test: Run unit tests
+- `lein run`: Run the web server (Default port: 3000)
+- `lein test`: Run unit tests
 
 ## Frameworks/Libraries used:
 
