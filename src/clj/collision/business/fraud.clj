@@ -1,5 +1,6 @@
 (ns collision.business.fraud
-  [:require [collision.utils.vector :as vecutils]])
+  [:require [collision.utils.vector :as vecutils]
+            [clojure.tools.logging :as log]])
 
 (defn contains-value? [element coll]
   (boolean (some #(= element %) coll)))
@@ -19,14 +20,17 @@
   (def network2 nil)
   (def networksCounter 0)
   (def networksQuantity (count networks))
+  (log/debug "handling collision" collision)
   (while (and (or (= network1 nil) (= network2 nil)) (< networksCounter networksQuantity))
     (do
       (def network (get networks networksCounter))
       (if (and (= network1 nil) (contains-value? node1 network))
         (do
+          (log/debug "found network1" network)
           (def network1 network)))
       (if (and (= network2 nil) (contains-value? node2 network))
         (do
+          (log/debug "found network2" network)
           (def network2 network)))
       (def networksCounter (inc networksCounter))))
   (if (= network1 nil)
@@ -44,9 +48,13 @@
   (def networksCounter 0)
   (def networksQuantity (count networks))
   (def nodesVec [node1 node2])
+  (log/debug "searching" nodesVec)
   (while (and (not found) (< networksCounter networksQuantity))
     (do
       (def network (get networks networksCounter))
+      (log/debug "checking" nodesVec network)
       (def found (every? (set network) nodesVec))
+      (log/debug "found" found)
+      (log/debug "xp" (every? (set network) nodesVec))
       (def networksCounter (inc networksCounter))))
   found)

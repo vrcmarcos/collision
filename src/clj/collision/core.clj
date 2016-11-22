@@ -49,5 +49,5 @@
 
 (defn -main [& args]
   (memory/put-networks!
-    (input/create-networks-from-file "test-data.txt"))
+    (input/create-networks-from-file "data.txt"))
   (start-app args))

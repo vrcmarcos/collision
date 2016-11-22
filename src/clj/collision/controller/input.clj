@@ -8,5 +8,6 @@
   (with-open [rdr (io/reader (io/resource fileName))]
   (doseq [line (line-seq rdr)]
     (def collision (let [input line] (read-string (str "[" input "]"))))
+    (println collision)
     (def networks (fraud/add-collision networks collision))))
   networks)
